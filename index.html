@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo</title>
+    <!-- Style -->
+    <style>
+        /* Import */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;500;600&display=swap');
+
+        /* Root - Reset */
+        :root {
+            --color-1: #fff;
+            --color-2: #000;
+            --display-large: flex;
+            --display-small: none;
+            --back-to-top: 0;
+            --width-click-show: 40px
+        }
+
+        /* Ẩn đi thanh scroll bar */
+        ::-webkit-scrollbar {
+            display: none;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-image: linear-gradient(to bottom right, #4affde 0%, #5b9dff 40%, #d06bff 60%, #ff34d2 100%);
+            background-size: 200% 200%;
+            background-repeat: no-repeat;
+            animation: loadloadload 2s linear infinite alternate;
+            height: 200vh;
+        }
+
+        @keyframes loadloadload {
+            from {
+                background-position: 0 0;
+            }
+
+            to {
+                background-position: 100% 100%;
+            }
+
+        }
+
+        /* Global */
+        .d-flex {
+            display: flex;
+            align-items: center;
+        }
+
+        .f-end {
+            justify-content: flex-end;
+        }
+
+        .f-around {
+            justify-content: space-around;
+        }
+
+        .toggle-theme-1 {
+            --color-1: #000;
+            --color-2: #fff;
+        }
+
+        /* CSS */
+        header {
+            background-color: var(--color-2);
+            color: var(--color-1);
+            font-weight: 600;
+            height: 55px;
+            /* Position fixed và top 0 để cho thanh menu cố định trên top khi scroll */
+            position: fixed;
+            top: 0;
+            width: 100%;
+        }
+
+        .screen-large .logo {
+            font-size: 30px;
+        }
+
+        .screen-large .item {
+            padding: 15px;
+            cursor: pointer;
+        }
+
+        .screen-large .item:hover {
+            color: red;
+        }
+
+        .screen-small .show-menu {
+            font-size: 30px;
+            text-align: end;
+            padding: 5px;
+            padding-right: 20px;
+            cursor: pointer;
+        }
+
+        .screen-small .menu {
+            background: var(--color-2);
+            height: 260px;
+            width: 150px;
+            position: absolute;
+            top: 60px;
+            left: -120px;
+            opacity: 0;
+            transition: all .3s;
+        }
+
+        .open-menu {
+            left: 0 !important;
+            opacity: 1 !important;
+        }
+
+        .screen-small .close {
+            text-align: end;
+            padding-right: 10px;
+            padding-top: 5px;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        .screen-small .item {
+            padding: 15px;
+            cursor: pointer;
+        }
+
+        .screen-small .item:hover {
+            color: red;
+        }
+
+        .screen-large {
+            display: var(--display-large);
+            background: var(--color-2);
+            height: 0;
+            padding: 30px;
+            transition: all .3s;
+        }
+
+        .scroll-header {
+            height: 80px;
+        }
+
+        .screen-small {
+            display: var(--display-small);
+            position: relative;
+        }
+
+        /* Media */
+
+        @media screen and (max-width: 768px) {
+            :root {
+                --display-large: none;
+                --display-small: block;
+            }
+        }
+
+        .feature {
+            position: fixed;
+            background: #252425;
+            width: 200px;
+            height: 70px;
+            top: 200px;
+            padding: 10px;
+            right: 0;
+            font-weight: 500;
+            color: #fff;
+        }
+
+        .feature .toggle-theme {
+            font-size: 30px;
+            cursor: pointer;
+        }
+
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            font-size: 35px;
+            cursor: pointer;
+            background-color: rgba(255, 255, 255, .368);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            opacity: var(--back-to-top);
+            transition: opacity .3s;
+        }
+
+        .show-to-top {
+            --back-to-top: 1
+        }
+        .click-to-show{
+            position: fixed;
+            bottom: 100px;
+            outline: none;
+            border: none;
+            right: 0;
+            background: white;
+            width: var(--width-click-show);
+            height: 45px;
+            line-height: 10px;
+            font-size: 29px;
+            cursor: pointer;
+            overflow: hidden;
+            transition: width .3s;
+        }
+        .show-item-right{
+            --width-click-show: 325px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- HTML -->
+    <!-- ---------------------------- Menu Responsive------------------------ -->
+    <header>
+        <!-- Dạng màn hình lớn -->
+        <div class="screen-large d-flex f-around">
+            <div class="logo">Burger🍔</div>
+            <div class="menu d-flex f-end">
+                <div class="item">Item 1 🥪</div>
+                <div class="item">Item 2 🥐</div>
+                <div class="item">Item 3 🥙</div>
+                <div class="item">Item 4 🍓</div>
+            </div>
+        </div>
+        <!-- Dạng màn hình nhỏ -->
+        <div class="screen-small">
+            <div class="show-menu">🍻</div>
+            <div class="menu">
+                <div class="close">🍱</div>
+                <div class="item">Item 1 🥪</div>
+                <div class="item">Item 2 🥐</div>
+                <div class="item">Item 3 🥙</div>
+                <div class="item">Item 4 🍓</div>
+            </div>
+        </div>
+    </header>
+    <!-- ---------------------------- Toggle Theme -------------------------- -->
+    <div class="feature d-flex f-around">
+        <div>
+            <p class="width-screen"></p>
+            <p class="height-screen"></p>
+        </div>
+        <div class="toggle-theme">
+            🎂
+        </div>
+    </div>
+    <!-- ----------------------------- Back To Top --------------------------- -->
+    <div class="back-to-top">
+        🥩
+    </div>
+    <button class="click-to-show d-flex">
+        💵 
+        <div class="item-show">🍍 🥥 🥝 🍅 🍆 🥑</div>
+    </button>
+
+    <!-- JS -->
+    <script>
+        const widthScreen = document.querySelector('.width-screen');
+        const heightScreen = document.querySelector('.height-screen');
+        const backToTop = document.querySelector('.back-to-top')
+        const largeScreen = document.querySelector('.screen-large')
+        const showListFood =  document.querySelector('.click-to-show')
+        window.onresize = function () {
+            widthScreen.innerHTML = "Width: " + window.innerWidth;
+        }
+        // ---------------------------- Menu Responsive-----------------------
+        const menu = document.querySelector('.screen-small .menu')
+        document.querySelector('.screen-small .show-menu').onclick = function () {
+            menu.classList.toggle('open-menu');
+            // Toggle na ná if else, nếu có class open-menu rồi thì nó sẽ gỡ, nếu chưa có thì nó tự thêm vào
+        }
+        document.querySelector('.screen-small .close').onclick = function () {
+            menu.classList.remove('open-menu')
+            // Remove với add thì nó chạy 1 chiều
+        }
+        document.querySelector('.feature .toggle-theme').onclick = function () {
+            document.body.classList.toggle('toggle-theme-1');
+        }
+        backToTop.onclick = function () {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            })
+        }
+        window.onscroll = function () {
+            heightScreen.innerHTML = "Height: " + window.pageYOffset;
+            // Thay đổi trạng thái của back to top khi scroll
+            window.pageYOffset > 100 ? backToTop.classList.add('show-to-top') : backToTop.classList.remove('show-to-top');
+            // Thay đổi trạng thái của thanh header khi scroll
+            window.pageYOffset > 0 ? largeScreen.classList.add('scroll-header') : largeScreen.classList.remove('scroll-header');
+        }
+        showListFood.onclick = function () {
+            showListFood.classList.add('show-item-right');
+        }
+        showListFood.onblur = function () {
+            showListFood.classList.remove('show-item-right');
+        }
+        // Event hover trong JS (Có 2 giai đoạn, hover vào và hover ra)
+        // Hover trong css nó tự động có onmouseover và onmouseout
+        // 1. Hover vào
+        showListFood.onmouseover = function () {
+            showListFood.style.background = '#2a2f38';
+        }
+        // 2. Hover ra
+        showListFood.onmouseout = function () {
+            showListFood.style.background = '#fff';
+        }
+    </script>
+</body>
+
+</html>
